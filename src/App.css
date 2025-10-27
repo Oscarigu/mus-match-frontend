@@ -40,3 +40,67 @@
 .read-the-docs {
   color: #888;
 }
+/* ...existing code... */
+.mm-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  background: #111827;
+  color: #fff;
+  height: 64px; /* altura fija del navbar */
+  gap: 1rem;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* resto de estilos existentes */
+.mm-burger {
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.mm-burger .bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.mm-logo img {
+  height: 40px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.mm-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mm-username {
+  font-weight: 600;
+  color: #fff;
+}
+
+.mm-login {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+/* ...existing code... */
