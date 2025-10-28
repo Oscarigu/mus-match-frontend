@@ -11,9 +11,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -22,6 +24,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -40,6 +43,7 @@
 .read-the-docs {
   color: #888;
 }
+
 /* ...existing code... */
 .mm-navbar {
   position: fixed;
@@ -52,10 +56,11 @@
   padding: 0 1rem;
   background: #111827;
   color: #fff;
-  height: 64px; /* altura fija del navbar */
+  height: 64px;
+  /* altura fija del navbar */
   gap: 1rem;
   z-index: 1000;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 /* resto de estilos existentes */
@@ -103,4 +108,60 @@
   border-radius: 6px;
   cursor: pointer;
 }
-/* ...existing code... */
+
+.hc-contenedor {
+  margin-top: 80px;            /* Deja espacio para el navbar fijo */
+  display: flex;
+  justify-content: stretch;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f0f0f0;
+  width: 50vw;                 /* Ocupa todo el ancho disponible */
+  height: 70vh;                /* Proporción agradable en pantalla */
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.hc-item {
+  flex: 1;
+  background-color: #007bff;
+  color: white;
+  border-radius: 12px;
+  font-family: sans-serif;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+/* efecto hover */
+.hc-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.1);
+}
+
+/* imágenes de fondo */
+.tournaments {
+  background-image: url("https://i.imgur.com/0ndiJfw.jpeg");
+}
+
+.games {
+  background-image: url("https://i.imgur.com/fjRLopT.jpeg");
+}
+
+/* responsive: apilados en pantallas pequeñas */
+@media (max-width: 768px) {
+  .hc-contenedor {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .hc-item {
+    height: 40vh;
+  }
+}

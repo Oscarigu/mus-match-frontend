@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
-export default function Navbar({ user, onLogin, onToggle }) {
+export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
   const handleToggle = () => {
     setMenuOpen(!menuOpen);
-    if (onToggle) onToggle();
   };
 
   return (
@@ -23,19 +24,23 @@ export default function Navbar({ user, onLogin, onToggle }) {
       </button>
 
       {/* Logo */}
+      <Link to="/" style={{ textDecoration: "none", display: "contents" }}>
       <div className="mm-logo">
         <img src="https://i.imgur.com/XGgSGAt.png" alt="Mus Match" />
       </div>
-
+      </Link>
       {/* Right section */}
       <div className="mm-right">
-        {user && user.name ? (
-          <span className="mm-username">Hola, {user.name}</span>
+        {isLoggedIn && user ? (
+          <div className="flex items-center gap-4">
+            <span className="mm-username">Hola, {user.name}</span>
+            <button className="mm-login" onClick={logOutUser}>
+              Logout
+            </button>
+          </div>
         ) : (
           <Link to="/login">
-            <button className="mm-login" onClick={onLogin}>
-              Iniciar sesión
-            </button>
+            <button className="mm-login">Iniciar sesión</button>
           </Link>
         )}
       </div>
@@ -77,17 +82,17 @@ export default function Navbar({ user, onLogin, onToggle }) {
           >
             Games
           </Link>
-            <Link
-              to="/profile"
-              style={{
-                color: "#fff",
-                padding: "0.5rem 1rem",
-                textDecoration: "none",
-              }}
-              onClick={() => setMenuOpen(false)}
-            >
-              Profile
-            </Link>
+          <Link
+            to="/profile"
+            style={{
+              color: "#fff",
+              padding: "0.5rem 1rem",
+              textDecoration: "none",
+            }}
+            onClick={() => setMenuOpen(false)}
+          >
+            Profile
+          </Link>
         </div>
       )}
     </nav>

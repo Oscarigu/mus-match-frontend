@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+// ...existing code...
+import React, { useState, useContext } from "react";
+import axios from "axios";
+
 import {
   TextInput,
   PasswordInput,
@@ -12,14 +15,45 @@ import {
 } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 
+import { AuthContext } from "../context/AuthContext";
+
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function LoginPage() {
   const navigate = useNavigate();
+  const { storeToken, authenticateUser } = useContext(AuthContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Logging in with:", { email, password });
+    setErrorMessage("");
+
+    const requestBody = { email, password };
+
+    axios
+      .post(`${API_URL}/auth/login`, requestBody)
+      .then((response) => {
+        const { authToken } = response.data;
+        if (authToken) {
+          // store token in context helper and verify user
+          storeToken(authToken);
+          authenticateUser(); // updates context (isLoggedIn, user)
+          navigate("/"); // redirect to home (or adjust to /profile/:id)
+        } else {
+          setErrorMessage("Respuesta inesperada del servidor");
+        }
+      })
+      .catch((err) => {
+        const msg =
+          err.response && err.response.data && err.response.data.message
+            ? err.response.data.message
+            : "Error al iniciar sesión";
+        setErrorMessage(msg);
+        console.error("Login error:", err);
+      });
   };
 
   return (
@@ -38,8 +72,8 @@ export default function LoginPage() {
         p="xl"
         withBorder
         style={{
-          width: "85vw", // use viewport width
-          maxWidth: "700px", // optional, prevents it from getting too wide
+          width: "85vw",
+          maxWidth: "700px",
           minHeight: "400px",
         }}
       >
@@ -71,15 +105,17 @@ export default function LoginPage() {
           </Stack>
         </form>
 
+        {errorMessage && (
+          <Text color="red" size="sm" mt="sm">
+            {errorMessage}
+          </Text>
+        )}
+
         <Group justify="center" mt="md">
           <Text size="sm" c="dimmed">
             ¿No tienes cuenta todavía?
           </Text>
-          <Anchor
-            size="sm"
-            onClick={() => navigate("/signup")}
-            style={{ cursor: "pointer" }}
-          >
+          <Anchor size="sm" href="/signup" style={{ cursor: "pointer" }}>
             Sign Up
           </Anchor>
         </Group>
@@ -87,3 +123,4 @@ export default function LoginPage() {
     </div>
   );
 }
+// ...existing code...

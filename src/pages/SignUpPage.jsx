@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import {
   TextInput,
   PasswordInput,
@@ -12,20 +13,35 @@ import {
 } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function SignUpPage() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setErrorMessage("");
 
-    // TODO: Add your API call here to register the user
-    console.log("Registering user:", { name, email, password });
+    const requestBody = { email, password, name };
 
-    // After successful signup, redirect to login or home
-    navigate("/login");
+    axios
+      .post(`${API_URL}/auth/signup`, requestBody)
+      .then((response) => {
+        // Si el registro es exitoso, redirige al login
+        navigate("/login");
+      })
+      .catch((err) => {
+        const msg = 
+          err.response && err.response.data && err.response.data.message
+            ? err.response.data.message
+            : "Error en el registro";
+        setErrorMessage(msg);
+        console.error("Signup error:", err);
+      });
   };
 
   return (
@@ -50,7 +66,7 @@ export default function SignUpPage() {
         }}
       >
         <Title order={2} ta="center" mb="md">
-          Unete a la comunidad mas pionera de mus!
+          Únete a la comunidad más pionera de mus!
         </Title>
 
         <form onSubmit={handleSubmit}>
@@ -84,6 +100,12 @@ export default function SignUpPage() {
             </Button>
           </Stack>
         </form>
+
+        {errorMessage && (
+          <Text color="red" size="sm" mt="sm">
+            {errorMessage}
+          </Text>
+        )}
 
         <Group justify="center" mt="md">
           <Text size="sm" c="dimmed">
