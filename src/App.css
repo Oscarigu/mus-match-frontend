@@ -109,6 +109,9 @@
   cursor: pointer;
 }
 
+/* HOME CSS */
+
+
 .hc-contenedor {
   margin-top: 80px;            /* Deja espacio para el navbar fijo */
   display: flex;
@@ -164,4 +167,89 @@
   .hc-item {
     height: 40vh;
   }
+}
+
+/* GAMES CSS */
+
+.games-container {
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.games-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.game-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: inherit;
+}
+
+.game-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.game-info {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.status {
+  font-weight: bold;
+  padding: 0.3rem 0.8rem;
+  border-radius: 8px;
+  text-transform: uppercase;
+}
+
+.status.available {
+  background-color: #e1f7e1;
+  color: #1b7b1b;
+}
+
+.status.complete {
+  background-color: #ffe0e0;
+  color: #b30000;
+}
+
+/* GAME:ID CSS */
+
+.game-detail-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+}
+
+.teams {
+  display: flex;
+  gap: 2rem;
+  margin: 1rem 0;
+}
+
+.team {
+  flex: 1;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.team h2 {
+  margin-bottom: 0.5rem;
 }
