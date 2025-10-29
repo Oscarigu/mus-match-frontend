@@ -13,7 +13,7 @@ import {
   Group,
   Stack,
 } from "@mantine/core";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../context/AuthContext";
 
@@ -115,9 +115,7 @@ export default function LoginPage() {
           <Text size="sm" c="dimmed">
             ¿No tienes cuenta todavía?
           </Text>
-          <Anchor size="sm" href="/signup" style={{ cursor: "pointer" }}>
-            Sign Up
-          </Anchor>
+          <Link to="/signup">Sign Up</Link>
         </Group>
       </Paper>
     </div>
