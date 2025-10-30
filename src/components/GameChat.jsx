@@ -11,10 +11,9 @@ export function GameChat({ gameId }) {
   const [loading, setLoading] = useState(true);
   const [sending, setSending] = useState(false);
 
-  // Fetch the conversation for this game
+  // === Fetch conversation ===
   const fetchConversation = async () => {
     try {
-      setLoading(true);
       const res = await axios.get(`${API_URL}/api/conversations?game=${gameId}`);
       const convo = res.data?.find((c) => c.game._id === gameId);
       setConversation(convo || null);
@@ -25,7 +24,7 @@ export function GameChat({ gameId }) {
     }
   };
 
-  // Send a message
+  // === Send message ===
   const handleSend = async (e) => {
     e.preventDefault();
     if (!message.trim() || !conversation) return;
@@ -40,7 +39,7 @@ export function GameChat({ gameId }) {
         }
       );
       setMessage("");
-      await fetchConversation(); // refresh chat
+      await fetchConversation(); // refresh chat immediately
     } catch (err) {
       console.error("Error sending message:", err);
     } finally {
@@ -48,17 +47,30 @@ export function GameChat({ gameId }) {
     }
   };
 
+  // === Initial fetch + live polling every 30s ===
   useEffect(() => {
-    fetchConversation();
+    if (!gameId) return;
+
+    fetchConversation(); // initial load
+
+    // set up polling
+    const interval = setInterval(() => {
+      fetchConversation();
+    }, 30000); // every 30 seconds
+
+    // clean up when component unmounts or gameId changes
+    return () => clearInterval(interval);
   }, [gameId]);
 
+  // === Loading states ===
   if (loading) return <p>Cargando chat...</p>;
   if (!conversation) return <p>No se ha encontrado un chat para la partida.</p>;
 
-  // Check if current user is allowed
+  // === Check if current user is part of the game ===
   const isUserInGame = conversation.users.some((u) => u._id === user._id);
-  if (!isUserInGame) return null; // don't render chat if not in game
+  if (!isUserInGame) return null;
 
+  // === Render chat ===
   return (
     <Card shadow="sm" padding="lg" mt="xl" radius="md" withBorder>
       <Text fw={600} mb="sm">
