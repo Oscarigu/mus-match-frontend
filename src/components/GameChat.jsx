@@ -52,8 +52,8 @@ export function GameChat({ gameId }) {
     fetchConversation();
   }, [gameId]);
 
-  if (loading) return <p>Loading chat...</p>;
-  if (!conversation) return <p>No conversation found for this game.</p>;
+  if (loading) return <p>Cargando chat...</p>;
+  if (!conversation) return <p>No se ha encontrado un chat para la partida.</p>;
 
   // Check if current user is allowed
   const isUserInGame = conversation.users.some((u) => u._id === user._id);
@@ -62,7 +62,7 @@ export function GameChat({ gameId }) {
   return (
     <Card shadow="sm" padding="lg" mt="xl" radius="md" withBorder>
       <Text fw={600} mb="sm">
-        💬 Game Chat
+        💬 Chat de la partida
       </Text>
 
       <div
@@ -77,7 +77,7 @@ export function GameChat({ gameId }) {
       >
         {conversation.messages.length === 0 ? (
           <Text size="sm" c="dimmed">
-            No messages yet.
+            Sin mensajes.
           </Text>
         ) : (
           conversation.messages.map((msg, i) => (
@@ -101,7 +101,7 @@ export function GameChat({ gameId }) {
 
       {conversation.isLocked ? (
         <Text size="sm" c="dimmed">
-          🔒 Chat locked — waiting for all 4 players to join.
+          🔒 Chat bloqueado — esperando a ser 4 jugadores.
         </Text>
       ) : (
         <form onSubmit={handleSend}>
