@@ -12,11 +12,14 @@ import {
 import { DateTimePicker } from "@mantine/dates";
 import axios from "axios";
 import { IconCheck, IconX } from "@tabler/icons-react";
+import { useNavigate } from "react-router-dom";
 
 function NewGame() {
   const API_URL = import.meta.env.VITE_API_URL;
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
+
+  let navigate = useNavigate();
 
   const form = useForm({
     initialValues: {
@@ -54,6 +57,9 @@ function NewGame() {
 
       setMessage("Partida creada satisfactoriamente!");
       form.reset();
+      setTimeout(() => {
+        navigate("/games");
+      }, "1500");
     } catch (err) {
       console.error(err);
       setError(err.response?.data?.message || "Error creando la partida");
