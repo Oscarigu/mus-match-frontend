@@ -12,38 +12,35 @@ export default function Navbar() {
 
   return (
     <nav className="mm-navbar">
-      {/* Burger Button */}
-      <button
-        className="mm-burger"
-        onClick={handleToggle}
-        aria-label="Abrir menú"
-      >
-        <span className="bar" />
-        <span className="bar" />
-        <span className="bar" />
-      </button>
+  {/* Burger Button */}
+  <button className="mm-burger" onClick={handleToggle} aria-label="Abrir menú">
+    <span className="bar" />
+    <span className="bar" />
+    <span className="bar" />
+  </button>
 
-      {/* Logo */}
-      <Link to="/" style={{ textDecoration: "none", display: "contents" }}>
-      <div className="mm-logo">
-        <img src="https://i.imgur.com/XGgSGAt.png" alt="Mus Match" />
+  {/* Logo */}
+  <Link to="/" className="mm-logo-link">
+    <div className="mm-logo">
+      <img src="https://i.imgur.com/XGgSGAt.png" alt="Mus Match" />
+    </div>
+  </Link>
+
+  {/* Right section */}
+  <div className="mm-right">
+    {isLoggedIn && user ? (
+      <div className="flex items-center gap-4">
+        <span className="mm-username">Hola, {user.name}</span>
+        <button className="mm-login" onClick={logOutUser}>
+          Logout
+        </button>
       </div>
+    ) : (
+      <Link to="/login">
+        <button className="mm-login">Iniciar sesión</button>
       </Link>
-      {/* Right section */}
-      <div className="mm-right">
-        {isLoggedIn && user ? (
-          <div className="flex items-center gap-4">
-            <span className="mm-username">Hola, {user.name}</span>
-            <button className="mm-login" onClick={logOutUser}>
-              Logout
-            </button>
-          </div>
-        ) : (
-          <Link to="/login">
-            <button className="mm-login">Iniciar sesión</button>
-          </Link>
-        )}
-      </div>
+    )}
+  </div>
 
       {/* Dropdown Menu */}
       {menuOpen && (

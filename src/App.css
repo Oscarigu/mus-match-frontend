@@ -24,7 +24,6 @@
   from {
     transform: rotate(0deg);
   }
-
   to {
     transform: rotate(360deg);
   }
@@ -44,7 +43,8 @@
   color: #888;
 }
 
-/* ...existing code... */
+/* ------------------- NAVBAR ------------------- */
+
 .mm-navbar {
   position: fixed;
   top: 0;
@@ -57,13 +57,24 @@
   background: #111827;
   color: #fff;
   height: 64px;
-  /* altura fija del navbar */
-  gap: 1rem;
   z-index: 1000;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* resto de estilos existentes */
+/* Center the logo perfectly */
+.mm-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.mm-logo img {
+  height: 40px;
+  object-fit: contain;
+  display: block;
+}
+
 .mm-burger {
   background: transparent;
   border: none;
@@ -72,6 +83,7 @@
   gap: 4px;
   padding: 6px;
   cursor: pointer;
+  z-index: 2;
 }
 
 .mm-burger .bar {
@@ -82,17 +94,11 @@
   border-radius: 2px;
 }
 
-.mm-logo img {
-  height: 40px;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto;
-}
-
 .mm-right {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  z-index: 2;
 }
 
 .mm-username {
@@ -109,18 +115,17 @@
   cursor: pointer;
 }
 
-/* HOME CSS */
-
+/* ------------------- HOME ------------------- */
 
 .hc-contenedor {
-  margin-top: 80px;            /* Deja espacio para el navbar fijo */
+  margin-top: 80px;
   display: flex;
   justify-content: stretch;
   gap: 20px;
   padding: 20px;
   background-color: #f0f0f0;
-  width: 50vw;                 /* Ocupa todo el ancho disponible */
-  height: 70vh;                /* Proporción agradable en pantalla */
+  width: 50vw;
+  height: 70vh;
   box-sizing: border-box;
   transition: all 0.3s ease;
 }
@@ -141,14 +146,12 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
 }
 
-/* efecto hover */
 .hc-item:hover {
   transform: scale(1.03);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   filter: brightness(1.1);
 }
 
-/* imágenes de fondo */
 .tournaments {
   background-image: url("https://i.imgur.com/0ndiJfw.jpeg");
 }
@@ -157,7 +160,6 @@
   background-image: url("https://i.imgur.com/fjRLopT.jpeg");
 }
 
-/* responsive: apilados en pantallas pequeñas */
 @media (max-width: 768px) {
   .hc-contenedor {
     flex-direction: column;
@@ -169,7 +171,7 @@
   }
 }
 
-/* GAMES CSS */
+/* ------------------- GAMES ------------------- */
 
 .games-container {
   padding: 2rem;
@@ -225,7 +227,7 @@
   color: #b30000;
 }
 
-/* GAME:ID CSS */
+/* ------------------- GAME DETAIL ------------------- */
 
 .game-detail-container {
   max-width: 800px;
