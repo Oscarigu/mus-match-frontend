@@ -24,7 +24,7 @@ function AllGamesPage() {
       });
   }, [API_URL]);
 
-  if (loading) return <p>Loading games...</p>;
+  if (loading) return <p>Cargando partidas...</p>;
   if (error) return <p>{error}</p>;
 
   return (
