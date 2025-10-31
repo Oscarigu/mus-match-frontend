@@ -49,7 +49,7 @@ function GameDetailsPage() {
 
       <GamePlayersTable game={game} onUpdate={fetchGame} />
 
-      {/* ✅ Only show chat if user is in the game */}
+      {/* Solo muestra el chat si el usuario esta en la partida */}
       {isPlayer && <GameChat gameId={gameId} />}
     </div>
   );

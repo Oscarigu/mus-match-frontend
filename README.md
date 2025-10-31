@@ -1,16 +1,100 @@
-# React + Vite
+# Mus-Match Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interfaz de usuario para la aplicación Mus-Match, una plataforma para conectar jugadores de mus y gestionar partidas online.
 
-Currently, two official plugins are available:
+## 🚀 Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 👤 Autenticación de usuarios (registro e inicio de sesión)
+- 🎮 Creación y gestión de partidas
+- 💬 Chat en tiempo real entre jugadores
+- 📱 Diseño responsive
+- 🔔 Sistema de notificaciones
+- 👥 Tabla de jugadores
+- 📊 Gestión de perfiles
 
-## React Compiler
+## 🛠️ Tecnologías
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React + Vite
+- Context API para gestión de estado
+- CSS para estilos
+- Axios para peticiones HTTP
+- React Router para navegación
 
-## Expanding the ESLint configuration
+## 📁 Estructura del Proyecto
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+src/
+├── components/         # Componentes reutilizables
+│   ├── GameChat       # Componente de chat
+│   ├── GamePlayersTable
+│   ├── HomeComp
+│   ├── Navbar
+│   └── Notification
+├── context/           # Context API
+│   └── AuthContext
+├── pages/             # Páginas de la aplicación
+│   ├── AllGamesPage
+│   ├── GameDetailsPage
+│   ├── LoginPage
+│   ├── NewGame
+│   ├── ProfilePage
+│   ├── SignUpPage
+│   └── UpdateGamePage
+└── assets/           # Recursos estáticos
+```
+
+## 📦 Instalación
+
+1. Clona el repositorio:
+```bash
+git clone https://github.com/Oscarigu/mus-match-frontend.git
+```
+
+2. Instala las dependencias:
+```bash
+cd mus-match-frontend
+npm install
+```
+
+3. Crea un archivo `.env` con las siguientes variables:
+```
+VITE_API_URL=http://localhost:5005/api
+```
+
+4. Inicia el servidor de desarrollo:
+```bash
+npm run dev
+```
+
+## 🔍 Scripts Disponibles
+
+- `npm run dev` - Inicia el servidor de desarrollo
+- `npm run build` - Construye la aplicación para producción
+- `npm run lint` - Ejecuta el linter
+- `npm run preview` - Previsualiza la build de producción
+
+## 📱 Páginas y Rutas
+
+- `/` - Página principal
+- `/login` - Inicio de sesión
+- `/signup` - Registro de usuarios
+- `/profile` - Perfil de usuario
+- `/games` - Lista de partidas
+- `/games/new` - Crear nueva partida
+- `/games/:id` - Detalles de partida
+- `/games/:id/edit` - Editar partida
+
+## 🤝 Integración con Backend
+
+La aplicación se comunica con el backend a través de una API REST. Asegúrate de que el servidor backend esté corriendo en `http://localhost:5005` o actualiza la URL en el archivo `.env` según corresponda.
+
+## 🔒 Seguridad
+
+- Autenticación mediante JWT
+- Rutas protegidas
+- Validación de formularios
+- Manejo seguro de tokens
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT.
