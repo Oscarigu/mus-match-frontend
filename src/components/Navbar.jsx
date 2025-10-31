@@ -66,7 +66,7 @@ export default function Navbar() {
             }}
             onClick={() => setMenuOpen(false)}
           >
-            Tournaments
+            Torneos*
           </Link>
           <Link
             to="/games"
@@ -77,7 +77,7 @@ export default function Navbar() {
             }}
             onClick={() => setMenuOpen(false)}
           >
-            Games
+            Partidas
           </Link>
           <Link
             to="/profile"
@@ -88,7 +88,7 @@ export default function Navbar() {
             }}
             onClick={() => setMenuOpen(false)}
           >
-            Profile
+            Perfil*
           </Link>
         </div>
       )}
